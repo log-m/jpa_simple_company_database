@@ -22,22 +22,63 @@ public class ProductPersistenceServiceImpl implements ProductPersistenceService
 	@Override
 	public void create(Product product) throws SQLException, DAOException
 	{
+	try {
+			em.getTransaction().begin();
+			em.persist(product);
+			em.getTransaction().commit();
+		}
+		catch (Exception ex) {
+			em.getTransaction().rollback();
+			throw ex;
+}
 	}
 
 	@Override
 	public Product retrieve(Long id) throws SQLException, DAOException
 	{
-		return null;
+		try {
+			em.getTransaction().begin();
+			Product prod = em.find(Product.class, id);
+			em.getTransaction().commit();
+			return prod;
+		}
+		catch (Exception ex) {
+			em.getTransaction().rollback();
+			throw ex;
+}
 	}
 
 	@Override
 	public void update(Product product) throws SQLException, DAOException
 	{
+		try {
+			em.getTransaction().begin();
+			Product prod = em.find(Product.class, product.getId());
+			prod.setProdName(product.getProdName());
+			prod.setProdDescription(product.getProdDescription());
+			prod.setProdCategory(product.getProdCategory());
+			prod.setProdUPC(product.getProdUPC());
+			em.getTransaction().commit();
+		}
+		catch (Exception ex) {
+			em.getTransaction().rollback();
+			throw ex;
+		}
 	}
 
 	@Override
 	public void delete(Long id) throws SQLException, DAOException
 	{
+		try{
+			em.getTransaction().begin();
+			Product prod = em.find(Product.class, id);
+			em.remove(prod);
+			em.getTransaction().commit();
+		}
+		catch (Exception ex) {
+			em.getTransaction().rollback();
+			throw ex;
+		}
 	}
 
 	@Override
