@@ -1,10 +1,10 @@
 package cs4347.hibernateProject.ecomm.entity;
 
 import java.sql.Date;
-
+@Entity
 public class Purchase 
 {
-	private Long id;
+	  @Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
 	private Date purchaseDate;
 	private double purchaseAmount;
 	private Customer customer;
