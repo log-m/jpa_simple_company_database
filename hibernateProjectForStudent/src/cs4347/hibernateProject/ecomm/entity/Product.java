@@ -5,13 +5,13 @@ public class Product
 {
 	@Column(name = "id")
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
-	@Column(name = "prodName")
+	
 	private String prodName;
-	@Column(name = "prodDescription")
+	
 	private String prodDescription;
-	@Column(name = "prodCategory")
+	
 	private int prodCategory;
-	@Column(name = "prodUPC")
+	
 	private String prodUPC;
 
 	public Long getId()
@@ -23,7 +23,7 @@ public class Product
 	{
 		this.id = id;
 	}
-
+	@Column(name = "prodName")
 	public String getProdName()
 	{
 		return prodName;
@@ -33,7 +33,7 @@ public class Product
 	{
 		this.prodName = prodName;
 	}
-
+	@Column(name = "prodDescription")
 	public String getProdDescription()
 	{
 		return prodDescription;
@@ -43,7 +43,7 @@ public class Product
 	{
 		this.prodDescription = prodDescription;
 	}
-
+	@Column(name = "prodCategory")
 	public int getProdCategory()
 	{
 		return prodCategory;
@@ -53,7 +53,7 @@ public class Product
 	{
 		this.prodCategory = prodCategory;
 	}
-
+	@Column(name = "prodUPC")
 	public String getProdUPC()
 	{
 		return prodUPC;
