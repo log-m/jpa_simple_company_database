@@ -1,8 +1,8 @@
 package cs4347.hibernateProject.ecomm.entity;
-
+@Entity
 public class Product 
 {
-	private Long id;
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
 	private String prodName;
 	private String prodDescription;
 	private int prodCategory;
