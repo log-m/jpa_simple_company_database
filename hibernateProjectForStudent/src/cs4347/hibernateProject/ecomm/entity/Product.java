@@ -1,11 +1,17 @@
 package cs4347.hibernateProject.ecomm.entity;
 @Entity
+@Table(name = "product")
 public class Product 
 {
+	@Column(name = "id")
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
+	@Column(name = "prodName")
 	private String prodName;
+	@Column(name = "prodDescription")
 	private String prodDescription;
+	@Column(name = "prodCategory")
 	private int prodCategory;
+	@Column(name = "prodUPC")
 	private String prodUPC;
 
 	public Long getId()
