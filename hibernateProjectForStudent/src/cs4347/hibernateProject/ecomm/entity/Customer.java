@@ -1,17 +1,25 @@
 package cs4347.hibernateProject.ecomm.entity;
-
-import java.sql.Date;
 @Entity
-public class Customer 
+@Table(name = "customer")
+public class Customer
 {
-	  @Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
+	@Column(name = "id")
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
+	
 	private String firstName;
+	
 	private String lastName;
+	
 	private Character gender;
+	
 	private Date dob;
+	
 	private String email;
+	
 	private Address address;
+	
 	private CreditCard creditCard;
+	
 
 	public Long getId()
 	{
@@ -23,6 +31,7 @@ public class Customer
 		this.id = id;
 	}
 
+	@Column(name = "firstName")
 	public String getFirstName()
 	{
 		return firstName;
@@ -32,7 +41,8 @@ public class Customer
 	{
 		this.firstName = firstName;
 	}
-
+	
+	@Column(name = "lastName")
 	public String getLastName()
 	{
 		return lastName;
@@ -42,7 +52,8 @@ public class Customer
 	{
 		this.lastName = lastName;
 	}
-
+	
+	@Column(name = "gender")
 	public Character getGender()
 	{
 		return gender;
@@ -52,7 +63,8 @@ public class Customer
 	{
 		this.gender = gender;
 	}
-
+	
+	@Column(name = "dob")
 	public Date getDob()
 	{
 		return dob;
@@ -63,6 +75,7 @@ public class Customer
 		this.dob = dob;
 	}
 
+	@Column(name = "email")
 	public String getEmail()
 	{
 		return email;
@@ -72,7 +85,7 @@ public class Customer
 	{
 		this.email = email;
 	}
-
+	
 	public Address getAddress()
 	{
 		return address;
