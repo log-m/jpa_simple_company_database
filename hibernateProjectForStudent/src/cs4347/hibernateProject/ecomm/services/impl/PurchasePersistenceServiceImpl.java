@@ -144,7 +144,7 @@ public class PurchasePersistenceServiceImpl implements PurchasePersistenceServic
 	{
 		em.getTransaction().begin();
 		List<Purchase> purchs = (List<Purchase>) em.createQuery("from Purchase as p where p.product.id = :productID")
-			.setParameter("productID, productID")
+			.setParameter("productID", productID)
 			.getResultList();
 		em.getTransaction().commit();
 		return purchs;
