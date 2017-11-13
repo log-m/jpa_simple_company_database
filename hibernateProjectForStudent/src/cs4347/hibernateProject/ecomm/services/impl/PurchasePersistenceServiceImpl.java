@@ -108,7 +108,7 @@ public class PurchasePersistenceServiceImpl implements PurchasePersistenceServic
 	public List<Purchase> retrieveForCustomerID(Long customerID) throws SQLException, DAOException
 	{
 		em.getTransaction().begin();
-		List<Purchase> purchs = (List<Purchase>) em.createQuery("from Purchase as p where p.customer.id =: customerID")
+		List<Purchase> purchs = (List<Purchase>) em.createQuery("from Purchase as p where p.customer.id = :customerID")
 			.setParameter("customerID", customerID)
 			.getResultList();
 		em.getTransaction().commit();
@@ -125,7 +125,7 @@ public class PurchasePersistenceServiceImpl implements PurchasePersistenceServic
 	{
 		PurchaseSummary purchSum = new PurchaseSummary();
 		List<Double> results = em.createQuery("SELECT MIN(p.purchaseAmount), MAX(p.purchaseAmount), AVG(p.purchaseAmount)
-		FROM Purchase as p WHERE p.customer.id =:customerID")
+		FROM Purchase as p WHERE p.customer.id = :customerID")
 			.setParameter("customerID", customerID)
 			.getResultList();
 		purchSum.minPurchase = results.get(0);
@@ -143,7 +143,7 @@ public class PurchasePersistenceServiceImpl implements PurchasePersistenceServic
 	public List<Purchase> retrieveForProductID(Long productID) throws SQLException, DAOException
 	{
 		em.getTransaction().begin();
-		List<Purchase> purchs = (List<Purchase>) em.createQuery("from Purchase as p where p.product.id =: productID")
+		List<Purchase> purchs = (List<Purchase>) em.createQuery("from Purchase as p where p.product.id = :productID")
 			.setParameter("productID, productID")
 			.getResultList();
 		em.getTransaction().commit();
