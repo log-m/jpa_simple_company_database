@@ -86,6 +86,8 @@ public class Customer
 		this.email = email;
 	}
 	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="address", unique=false) 
 	public Address getAddress()
 	{
 		return address;
@@ -96,6 +98,8 @@ public class Customer
 		this.address = address;
 	}
 
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="creditCard", unique=false) 
 	public CreditCard getCreditCard()
 	{
 		return creditCard;
