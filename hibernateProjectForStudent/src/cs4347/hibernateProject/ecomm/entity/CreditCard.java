@@ -3,10 +3,17 @@ package cs4347.hibernateProject.ecomm.entity;
 @Table(name = "CreditCard")
 public class CreditCard 
 {
+	@Column(name = "id")
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
+	
 	private Long id;
+	
 	private String name;
+	
 	private String ccNumber;
+	
 	private String expDate;
+	
 	private String securityCode;
 
 	public Long getId()
@@ -19,6 +26,7 @@ public class CreditCard
 		this.id = id;
 	}
 
+	@Column(name = "name")
 	public String getName()
 	{
 		return name;
@@ -28,7 +36,8 @@ public class CreditCard
 	{
 		this.name = name;
 	}
-
+	
+	@Column(name = "ccNumber")
 	public String getCcNumber()
 	{
 		return ccNumber;
@@ -39,6 +48,7 @@ public class CreditCard
 		this.ccNumber = ccNumber;
 	}
 
+	@Column(name = "expDate")
 	public String getExpDate()
 	{
 		return expDate;
@@ -49,6 +59,7 @@ public class CreditCard
 		this.expDate = expDate;
 	}
 
+	@Column(name = "securityCode")
 	public String getSecurityCode()
 	{
 		return securityCode;
