@@ -1,5 +1,6 @@
 package cs4347.hibernateProject.ecomm.entity;
-
+@Entity
+@Table(name = "CreditCard")
 public class CreditCard 
 {
 	private Long id;
