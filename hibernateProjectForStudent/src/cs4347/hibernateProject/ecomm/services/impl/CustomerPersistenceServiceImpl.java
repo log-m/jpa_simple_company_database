@@ -118,6 +118,12 @@ public class CustomerPersistenceServiceImpl implements CustomerPersistenceServic
 	@Override
 	public List<Customer> retrieveByDOB(Date startDate, Date endDate) throws SQLException, DAOException
 	{
-		return null;
+	 em.getTransaction().begin();
+	 List<Customer. cust = (List<Customer) em.createQuery("from Customer as p where customer.dob >= :start AND customer.dob <= :end")
+	 .setParameter("start", startDate)
+	 .setParameter("end", endDate) 
+	 .getResultList();
+	 em.getTransaction().commit();
+	 return cust;
 	}
 }
