@@ -1,10 +1,12 @@
 package cs4347.hibernateProject.ecomm.entity;
+import java.sql.Date;
+
+import javax.persistence.*;
 @Entity
-@Table(name = "customer")
+@Table(name = "Customer")
 public class Customer
 {
-	@Column(name = "id")
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
+	 private Long id;
 	
 	private String firstName;
 	
@@ -20,7 +22,8 @@ public class Customer
 	
 	private CreditCard creditCard;
 	
-
+	@Column(name = "id")
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getId()
 	{
 		return id;
@@ -86,8 +89,7 @@ public class Customer
 		this.email = email;
 	}
 	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="address", unique=false) 
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public Address getAddress()
 	{
 		return address;
@@ -98,8 +100,7 @@ public class Customer
 		this.address = address;
 	}
 
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="creditCard", unique=false) 
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public CreditCard getCreditCard()
 	{
 		return creditCard;

@@ -1,7 +1,17 @@
 package cs4347.hibernateProject.ecomm.entity;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name = "address")
 public class Address 
 {
+	
 	private Long id;
 	private String address1;
 	private String address2;
@@ -9,6 +19,8 @@ public class Address
 	private String state;
 	private String zipcode;
 
+	@Column(name = "id")
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getId()
 	{
 		return id;

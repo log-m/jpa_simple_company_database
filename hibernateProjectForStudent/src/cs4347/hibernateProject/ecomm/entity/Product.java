@@ -1,10 +1,10 @@
 package cs4347.hibernateProject.ecomm.entity;
+import javax.persistence.*;
 @Entity
-@Table(name = "product")
+@Table(name = "Product")
 public class Product 
 {
-	@Column(name = "id")
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
+	 private Long id;
 	
 	private String prodName;
 	
@@ -13,7 +13,8 @@ public class Product
 	private int prodCategory;
 	
 	private String prodUPC;
-
+	@Column(name = "id")
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getId()
 	{
 		return id;

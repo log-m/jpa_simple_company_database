@@ -1,12 +1,16 @@
 package cs4347.hibernateProject.ecomm.entity;
+
+import javax.persistence.*;
+
+
 @Entity
-@Table(name = "CreditCard")
+@Table(name = "creditCard")
 public class CreditCard 
 {
 	@Column(name = "id")
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
 	
-	private Long id;
+	//private Long id;
 	
 	private String name;
 	

@@ -1,3 +1,5 @@
+//GROUP 3
+//Logan Morris, Troy Kim, Karey Smith, Ashley Handoko
 package cs4347.hibernateProject.ecomm.services.impl;
 
 import java.sql.SQLException;
@@ -47,6 +49,7 @@ public class PurchasePersistenceServiceImpl implements PurchasePersistenceServic
 	public Purchase retrieve(Long id) throws SQLException, DAOException
 	{
 		try{
+			//get reference to table entry with find
 			em.getTransaction().begin();
 			Purchase purch = em.find(Purchase.class, id);
 			em.getTransaction().commit();
@@ -67,6 +70,7 @@ public class PurchasePersistenceServiceImpl implements PurchasePersistenceServic
 	{
 		try{
 			em.getTransaction().begin();
+			//get reference to table entry, set all the class attributes from the Java object it forms
 			Purchase purch = em.find(Purchase.class, purchase.getId());
 			purch.setPurchaseDate(purchase.getPurchaseDate());
 			purch.setPurchaseAmount(purchase.getPurchaseAmount());
@@ -88,6 +92,7 @@ public class PurchasePersistenceServiceImpl implements PurchasePersistenceServic
 	public void delete(Long id) throws SQLException, DAOException
 	{
 		try{
+			//get reference to table entry and remove
 			em.getTransaction().begin();
 			Purchase purch = em.find(Purchase.class, id);
 			em.remove(purch);
@@ -108,6 +113,7 @@ public class PurchasePersistenceServiceImpl implements PurchasePersistenceServic
 	public List<Purchase> retrieveForCustomerID(Long customerID) throws SQLException, DAOException
 	{
 		em.getTransaction().begin();
+		//JPQL query
 		List<Purchase> purchs = (List<Purchase>) em.createQuery("from Purchase as p where p.customer.id = :customerID")
 			.setParameter("customerID", customerID)
 			.getResultList();
@@ -124,13 +130,15 @@ public class PurchasePersistenceServiceImpl implements PurchasePersistenceServic
 	public PurchaseSummary retrievePurchaseSummary(Long customerID) throws SQLException, DAOException
 	{
 		PurchaseSummary purchSum = new PurchaseSummary();
-		List<Double> results = em.createQuery("SELECT MIN(p.purchaseAmount), MAX(p.purchaseAmount), AVG(p.purchaseAmount)
-		FROM Purchase as p WHERE p.customer.id = :customerID")
+		
+		//JPQL Query
+		Object[] results = (Object[])em.createQuery("SELECT MIN(p.purchaseAmount), MAX(p.purchaseAmount), AVG(p.purchaseAmount) "
+				+ "FROM Purchase as p WHERE p.customer.id = :customerID")
 			.setParameter("customerID", customerID)
-			.getResultList();
-		purchSum.minPurchase = results.get(0);
-		purchSum.maxPurchase = results.get(1);
-		purchSum.avgPurchase = results.get(2);
+			.getSingleResult(); //Aggregate functions return an Object array as a single result, so everything needed to be cast to Object[] instead of the usual list
+		purchSum.minPurchase = (double) results[0];
+		purchSum.maxPurchase = (double) results[1];
+		purchSum.avgPurchase = (double) results[2];
 		return purchSum;
 	}
 
@@ -143,6 +151,7 @@ public class PurchasePersistenceServiceImpl implements PurchasePersistenceServic
 	public List<Purchase> retrieveForProductID(Long productID) throws SQLException, DAOException
 	{
 		em.getTransaction().begin();
+		//JPQL Query
 		List<Purchase> purchs = (List<Purchase>) em.createQuery("from Purchase as p where p.product.id = :productID")
 			.setParameter("productID", productID)
 			.getResultList();
